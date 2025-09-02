@@ -88,25 +88,57 @@ python run_tests.py
 ## 📁 Структура проекта
 
 ```
+question_test/
+├── README.md                           # Основная документация проекта
+├── docker-compose.yml                  # Docker Compose конфигурация
+├── nginx.conf                          # Nginx конфигурация
+└── app/                                # Основное приложение
+```
+
+```
 app/
-├── app.py                 # Основное приложение FastAPI
-├── requirements.txt       # Зависимости Python
-├── .env                  # Переменные окружения (создать самостоятельно)
-├── routers/              # Роутеры API
-│   ├── questions.py      # Эндпоинты для вопросов
-│   └── answer.py         # Эндпоинты для ответов
-├── db/                   # Работа с базой данных
-│   ├── models.py         # Модели SQLAlchemy
-│   ├── engine.py         # Настройка подключения
-│   ├── config.py         # Конфигурация БД
-│   └── handler/          # Обработчики БД
-├── shemas/               # Pydantic схемы
-│   ├── questions.py      # Схемы вопросов
-│   └── answer.py         # Схемы ответов
-├── tests/                # Тесты
-│   ├── test_simple.py    # Простые тесты
-│   └── conftest.py       # Конфигурация тестов
-└── docker-compose.yml    # Docker Compose конфигурация
+├── app.py                              # Главное FastAPI приложение
+├── requirements.txt                     # Зависимости Python
+├── pytest.ini                          # Конфигурация pytest
+├── run_tests.py                        # Скрипт для запуска тестов
+├── README.md                           # Детальная документация app
+├── Dockerfile                          # Docker образ для FastAPI
+├── alembic/                            # Миграции базы данных
+│   ├── env.py                          # Конфигурация Alembic
+│   ├── script.py.mako                  # Шаблон для миграций
+│   ├── README                          # Документация Alembic
+│   └── versions/                       # Файлы миграций
+│       └── 4f66f74a7d1f_initial_migration.py
+├── 📁 db/                                 # Работа с базой данных
+│   ├── __init__.py                     # Инициализация пакета
+│   ├── config.py                       # Конфигурация БД
+│   ├── connection.py                   # Подключение к БД
+│   ├── engine.py                       # Движок БД и сессии
+│   ├── enums.py                        # Перечисления
+│   ├── models.py                       # Модели SQLAlchemy
+│   ├── utils.py                        # Утилиты для БД
+│   └── handler/                        # Обработчики БД
+│       ├── __init__.py                 # Инициализация пакета
+│       ├── create.py                   # Создание записей
+│       ├── delete.py                   # Удаление записей
+│       ├── get.py                      # Получение записей
+│       └── update.py                   # Обновление записей
+├── exception/                          # Обработка исключений
+│   ├── __init__.py                     # Инициализация пакета
+│   └── database.py                     # Исключения БД
+├── routers/                            # API роутеры
+│   ├── __init__.py                     # Инициализация пакета
+│   ├── questions.py                    # Роутер для вопросов
+│   └── answer.py                       # Роутер для ответов
+├── shemas/                             # Pydantic схемы (примечание: должно быть "schemas")
+│   ├── __init__.py                     # Инициализация пакета
+│   ├── questions.py                    # Схемы вопросов
+│   └── answer.py                       # Схемы ответов
+└── tests/                              # Тесты
+    ├── __init__.py                     # Инициализация пакета
+    ├── conftest.py                     # Конфигурация pytest
+    ├── test_simple.py                  # Простые тесты приложения
+    └── test_validation.py              # Тесты валидации
 ```
 
 ## 🔧 API Endpoints
